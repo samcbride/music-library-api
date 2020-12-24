@@ -1,0 +1,27 @@
+{
+  "name": "music-library-api",
+  "version": "1.0.0",
+  "description": "music library api project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -r dotenv/config index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samcbride/music-library-api.git"
+  },
+  "author": "Shona McBride",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samcbride/music-library-api/issues"
+  },
+  "homepage": "https://github.com/samcbride/music-library-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.6"
+  }
+}
