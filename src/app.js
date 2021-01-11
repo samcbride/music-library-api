@@ -23,6 +23,12 @@ app.delete('/artists/:id', artistControllers.deletedArtist);
 
 app.post('/artists/:artistId/albums', albumControllers.newAlbum);
 
-// app.get('/albums', albumControllers.list);
+app.get('/albums', albumControllers.list);
+
+app.get('/albums/:albumId', albumControllers.getAlbumById);
+
+app.patch('/albums/:id', albumControllers.updatedInfo);
+
+app.delete('/albums/:id', albumControllers.deletedAlbum);
 
 module.exports = app;

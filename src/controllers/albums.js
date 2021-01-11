@@ -1,9 +1,6 @@
 const { Album, Artist } = require('../models');
+const album = require('../models/album');
 // const album = require('../models/album');
-
-// const list = (req, res) => {
-//     Artists.findAll().then((artists) => res.status(200).json(artists));
-// };
 
 const newAlbum = (req, res) => {
     const { artistId } = req.params;
@@ -13,16 +10,54 @@ const newAlbum = (req, res) => {
         } else {
             const data = req.body;
             data.artistId = req.params.artistId;
-            console.log(data.artistId);
             Album.create(data, { include: "artist" }).then((album) => {
-                console.log(album);
                 res.status(201).json(album);
             });
         }
     });
 };
 
+const list = (req, res) => {
+    Album.findAll().then((album) => res.status(200).json(album));
+};
+
+const getAlbumById = (req, res) => {
+    const { albumId } = req.params;
+    Album.findByPk(albumId).then((album) => {
+        if(!album) {
+            res.status(404).json({ error: 'The album could not be found.'});
+        } else {
+            res.status(200).json(album);
+        }
+    });
+};
+
+const updatedInfo = (req, res) => {
+    const { id } = req.params;
+    Album.update(req.body, { where: { id } }).then(([updatedAlbum]) => {
+        if(!updatedAlbum) {
+            res.status(404).json({ error: 'The album could not be found.' });
+        } else {
+            res.status(200).json(updatedAlbum);
+        }
+    });
+};
+
+const deletedAlbum = (req, res) => {
+    const { id } = req.params;
+    Album.destroy( { where: { id } } ).then((updatedAlbum) => {
+        if(!updatedAlbum) {
+            res.status(404).json({ error: 'The album could not be found.'});
+        } else {
+            res.status(204).json(updatedAlbum);
+        }
+    });
+};
+
   module.exports = {
-    // list,
-    newAlbum
+    newAlbum,
+    list,
+    getAlbumById,
+    updatedInfo,
+    deletedAlbum
   };

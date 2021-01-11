@@ -99,7 +99,6 @@ describe('/artists', () => {
           .patch(`/artists/${artist.id}`)
           .send({ genre: 'Psychedelic Rock' })
           .then((res) => {
-            console.log(res.body); // Remember to remove this
             expect(res.status).to.equal(200);
             Artist.findByPk(artist.id, { raw: true }).then((updatedArtist) => {
               expect(updatedArtist.genre).to.equal('Psychedelic Rock');
@@ -114,7 +113,6 @@ describe('/artists', () => {
           .patch(`/artists/${artist.id}`)
           .send({ name: 'The Funky Dingos' })
           .then((res) => {
-            console.log(res.body); // Remember to remove this
             expect(res.status).to.equal(200);
             Artist.findByPk(artist.id, { raw: true }).then((updatedArtist) => {
               expect(updatedArtist.name).to.equal('The Funky Dingos');
