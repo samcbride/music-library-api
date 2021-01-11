@@ -1,5 +1,6 @@
-const { Artist } = require('../models');
+const { Artist, Album } = require('../models');
 const artist = require('../models/artist');
+const album = require('../models/album');
 
 const create = (req, res) => {
   Artist.create(req.body).then(artist => res.status(201).json(artist));
@@ -22,6 +23,8 @@ const getArtistById = (req, res) => {
 
 const newInfo = (req, res) => {
   const { id } = req.params;
+  console.log(req.body);
+  console.log(id); // Remember to remove this
   Artist.update(req.body, { where: { id } }).then(([rowsUpdated]) => {
     if (!rowsUpdated) {
       res.status(404).json({ error: 'The artist could not be found.' });
@@ -32,9 +35,23 @@ const newInfo = (req, res) => {
   });
 };
 
+const deletedArtist = (req, res) => {
+  const { id } = req.params;
+  console.log(id); // Remember to remove this
+  Artist.destroy( { where: { id } } ).then((rowsDeleted) => {
+    console.log(rowsDeleted); // Remember to remove this
+     if(!rowsDeleted) {
+      res.status(404).json( { error: 'The artist could not be found.' });
+    } else {
+      res.status(204).json(rowsDeleted);
+    }
+  });
+};
+
 module.exports = {
   create,
   list,
   getArtistById,
-  newInfo
+  newInfo,
+  deletedArtist
 };

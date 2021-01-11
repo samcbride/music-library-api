@@ -134,7 +134,30 @@ describe('/artists', () => {
           .catch(error => done(error));
       });
     });
-     
-    
+    describe('DELETE /artists/:artistId', () => {
+      it('deletes artist record by id', (done) => {
+        const artist = artists[0];
+        request(app)
+          .delete(`/artists/${artist.id}`)
+          .then((res) => {
+            expect(res.status).to.equal(204);
+            Artist.findByPk(artist.id, { raw: true }).then((updatedArtist) => {
+              expect(updatedArtist).to.equal(null);
+              done();
+            })
+            .catch(error => done(error));
+          });
+        });
+      it('returns a 404 if the artist does not exist', (done) => {
+        request(app)
+          .get('/artists/12345')
+          .then((res) => {
+            expect(res.status).to.equal(404);
+            expect(res.body.error).to.equal('The artist could not be found.');
+            done();
+          })
+          .catch(error => done(error));
+        });  
+      }); 
   });
 }); // I believe these end brackets are needed - they were not in the code on the walkthrough 
