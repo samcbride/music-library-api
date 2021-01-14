@@ -36,6 +36,6 @@ app.delete('/albums/:id', albumControllers.deletedAlbum);
 
 // Songs section below //
 
-app.post('/albums/:albumId/song', songControllers.create);
+app.post('/albums/:albumId/songs', songControllers.create);
 
 module.exports = app;

@@ -7,8 +7,6 @@ const newAlbum = (req, res) => {
         if(!artist) {
             res.status(404).json({ error: 'The artist could not be found.' });
         } else {
-            // const data = req.body;
-            // data.artistId = req.params.artistId;
             Album.create({...req.body, artistId: req.params.artistId}).then((album) => {
                 res.status(201).json(album);
             });

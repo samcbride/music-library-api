@@ -21,9 +21,9 @@ const setupDatabase = () => {
 
   const Song = SongModel(connection, Sequelize);
 
-  Song.belongsTo(Album, { as: 'album' });
+  Album.hasMany(Song, { foreignKey: 'album' });
 
-  Song.belongsTo(Artist, { as: 'artist' });
+  Artist.hasMany(Song, { foreignKey: 'artist' });
 
   connection.sync({ alter: true });
   return {

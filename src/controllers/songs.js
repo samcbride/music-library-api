@@ -19,7 +19,7 @@ const create = (req, res) => {
         if(!album) {
             res.status(404).json({ error: 'The album could not be found.'});
         } else {
-            Song.create({name: req.body.name, albumId: req.params.albumId, artistId: req.body.artistId}
+            Song.create({name: req.body.name, albumId: albumId, artistId: artistId}
             ).then((song) => {
                 res.status(201).json(song);
             });
