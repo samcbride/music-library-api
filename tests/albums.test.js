@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const { expect } = require('chai');
 const request = require('supertest');
 const app = require('../src/app');
