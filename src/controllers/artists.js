@@ -1,6 +1,4 @@
 const { Artist, Album } = require("../models");
-const artist = require("../models/artist");
-const album = require("../models/album");
 
 const create = (req, res) => {
   Artist.create(req.body)

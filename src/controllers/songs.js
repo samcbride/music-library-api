@@ -1,8 +1,4 @@
 const { Album, Artist, Song } = require("../models");
-const song = require("../models/song");
-const artist = require("../models/artist");
-const album = require("../models/album");
-const { getArtistById } = require("./artists");
 
 const create = (req, res) => {
   const { albumId } = req.params;

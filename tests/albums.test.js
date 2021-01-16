@@ -3,7 +3,6 @@ const { expect } = require('chai');
 const request = require('supertest');
 const app = require('../src/app');
 const { Artist, Album } = require('../src/models');
-const album = require('../src/models/album');
 
 describe('/albums', () => {
   let artist;

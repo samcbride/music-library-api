@@ -158,4 +158,4 @@ describe('/artists', () => {
         });  
       }); 
   });
-}); // I believe these end brackets are needed - they were not in the code on the walkthrough 
+}); 
