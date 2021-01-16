@@ -3,7 +3,6 @@ const { Album, Artist, Song } = require("../models");
 const create = (req, res) => {
   const { albumId } = req.params;
   const artistId = req.body.artist;
-  const songName = req.body.name;
   Artist.findByPk(artistId)
     .then((artist) => {
       if (!artist) {
