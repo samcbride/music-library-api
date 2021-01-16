@@ -38,4 +38,12 @@ app.delete('/albums/:id', albumControllers.deletedAlbum);
 
 app.post('/albums/:albumId/songs', songControllers.create);
 
+app.get('/songs', songControllers.list);
+
+app.get('/songs/:songId', songControllers.getSongById);
+
+app.patch('/songs/:id', songControllers.updatedInfo);
+
+app.delete('/songs/:id', songControllers.deletedSong);
+
 module.exports = app;

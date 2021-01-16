@@ -100,6 +100,7 @@ describe('/albums', () => {
         .catch(error => done(error));
       });
     });
+
   describe('GET /albums/:albumId', () => {
     it('gets album record by id', (done) => {
       const album = albums[0];
@@ -124,6 +125,7 @@ describe('/albums', () => {
       .catch(error => done(error));
     });
   });
+
   describe('PATCH /albums/:id', () => {
     it('updates album name by id', (done) => {
       const album = albums[0];
@@ -164,6 +166,7 @@ describe('/albums', () => {
       .catch(error => done(error));
     });
     });
+    
   describe('DELETE /albums/:albumId', () => {
     it('deletes album record by id', (done) => {
       const album = albums[0];
