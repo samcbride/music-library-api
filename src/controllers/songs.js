@@ -15,8 +15,8 @@ const create = (req, res) => {
             } else {
               Song.create({
                 name: req.body.name,
-                album: albumId,
-                artist: artistId,
+                albumId: albumId,
+                artistId: artistId,
               })
                 .then((song) => {
                   res.status(201).json(song);

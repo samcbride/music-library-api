@@ -5,7 +5,9 @@ const { Artist, Album, Song } = require("../src/models");
 
 describe("/songs", () => {
   let artist;
+  let secondArtist;
   let album;
+  let secondAlbum;
 
   before(async () => {
     try {
@@ -24,9 +26,18 @@ describe("/songs", () => {
         name: "Tame Impala",
         genre: "Rock",
       });
+      secondArtist = await Artist.create({
+        name: "Taylor Swift",
+        genre: "Pop",
+      });
       album = await Album.create({
         name: "InnerSpeaker",
         year: 2010,
+        artistId: artist.id,
+      });
+      secondAlbum = await Album.create({
+        name: "Le Best Album Ever",
+        year: 2007,
         artistId: artist.id,
       });
     } catch (err) {}
@@ -45,8 +56,8 @@ describe("/songs", () => {
           const songId = res.body.id;
           expect(res.body.id).to.equal(songId);
           expect(res.body.name).to.equal("Solitude Is Bliss");
-          expect(res.body.album).to.equal(`${album.id}`);
-          expect(res.body.artist).to.equal(artist.id);
+          expect(res.body.albumId).to.equal(`${album.id}`);
+          expect(res.body.artistId).to.equal(artist.id);
           done();
         })
         .catch((error) => done(error));
@@ -98,18 +109,18 @@ describe("/songs", () => {
     beforeEach((done) => {
       Promise.all([
         Song.create({
-          artist: artist.id,
-          album: album.id,
+          artistId: artist.id,
+          albumId: album.id,
           name: "Le Best Song in the World",
         }),
         Song.create({
-          artist: artist.id,
-          album: album.id,
+          artistId: artist.id,
+          albumId: album.id,
           name: "Feathers Float Down",
         }),
         Song.create({
-          artist: artist.id,
-          album: album.id,
+          artistId: artist.id,
+          albumId: album.id,
           name: "The Pinstripe Cushion",
         }),
       ]).then((documents) => {
@@ -166,12 +177,12 @@ describe("/songs", () => {
         const song = songs[0];
         request(app)
           .patch(`/songs/${song.id}`)
-          .send({ artist: 3 })
+          .send({ artistId: secondArtist.id })
           .then((res) => {
             expect(res.status).to.equal(200);
             Song.findByPk(song.id, { raw: true })
               .then((updatedSong) => {
-                expect(updatedSong.artist).to.equal(3);
+                expect(updatedSong.artistId).to.equal(secondArtist.id);
                 done();
               })
               .catch((error) => done(error));
@@ -181,12 +192,12 @@ describe("/songs", () => {
         const song = songs[0];
         request(app)
           .patch(`/songs/${song.id}`)
-          .send({ album: 2 })
+          .send({ albumId: secondAlbum.id })
           .then((res) => {
             expect(res.status).to.equal(200);
             Song.findByPk(song.id, { raw: true })
               .then((updatedSong) => {
-                expect(updatedSong.album).to.equal(2);
+                expect(updatedSong.albumId).to.equal(secondAlbum.id);
                 done();
               })
               .catch((error) => done(error));

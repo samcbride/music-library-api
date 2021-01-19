@@ -46,7 +46,7 @@ const updatedInfo = (req, res) => {
         res.status(200).json(updatedAlbum);
       }
     })
-    .catch((error) => console.log(error, "Line 40"));
+    .catch((error) => console.log(error));
 };
 
 const deletedAlbum = (req, res) => {
