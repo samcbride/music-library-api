@@ -1,6 +1,6 @@
 # Music Library API Project - Overview
 
-This project is about creating a Music Library API, which stores information about artists, albums, and songs. This was one of the major projects for the backend section of the bootcamp and had us create a CRUD REST API using Node.js, Express, and Sequelize. We also used tools such a Postman and MySQL Workbench to interact with our work and view and manipulate the database.
+For this project we created a Music Library API, following a CRUD REST API methodology. The Music Library stores information about artists, albums, and songs. It was one of the major backend projects we completed and included using technologies such as Node.js, Express, Sequelize, Mocha-Chai (for testing our asynchronous code), and well as Postman and MySQL Workbench to interact with out work and view and maniupulate the databases we created. CRUD (create, read, update, delete) operations can be performed on all of the sections (artists, albums, and songs). We also learned about the HTTP method equivalents (POST, GET, PATCH, DELETE) for the CRUD operations we were performing.
 
 ## Technologies
 
@@ -27,6 +27,8 @@ This project is about creating a Music Library API, which stores information abo
     * Represents any structure that we're defining around the data, such as tables and relationships. We defined data schemas for each item (artists, albums, and songs) in their own files and then made the connections between these three items in the *index.js* file in the *models* section.
 * Design and implement an API with CRUD operations on a database
     * This project was focused on creating an API utilizing CRUD (create, read, update, delete) operations. This was accomplished using the HTTP protocol equivalents (POST, GET, PATCH, DELETE). These directions that we created ensured that when the HTTP requests were made the appropriate response would be returned from the API. We used Postman and MySQL Workbench to test and then see that we were getting the appropriate responses.
+    * API stands for Application Programming Interface and is essentially a messenger that takes a request from the client, tells a system what the client wants to do, and then sends back the appropriate response. It allows one piece of software to talk to another piece of software.
+    * REST stands for REpresentational State Transfer and is the way in which we interact with the API (via a specific route and a specific type of request). For example, to view all the artists in the database we would send a *GET* request via the route `/artists`.
 
 # Getting Started
 
