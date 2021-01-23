@@ -1,21 +1,21 @@
 const { Album, Artist, Song } = require("../models");
 
 const create = (req, res) => {
-  const { albumId } = req.params;
+  const { id } = req.params;
   const artistId = req.body.artist;
   Artist.findByPk(artistId)
     .then((artist) => {
       if (!artist) {
         res.status(404).json({ error: "The artist could not be found." });
       } else {
-        Album.findByPk(albumId)
+        Album.findByPk(id)
           .then((album) => {
             if (!album) {
               res.status(404).json({ error: "The album could not be found." });
             } else {
               Song.create({
                 name: req.body.name,
-                albumId: albumId,
+                albumId: id,
                 artistId: artistId,
               })
                 .then((song) => {
@@ -30,15 +30,15 @@ const create = (req, res) => {
     .catch((error) => console.log(error));
 };
 
-const list = (req, res) => {
+const list = (_, res) => {
   Song.findAll()
     .then((song) => res.status(200).json(song))
     .catch((error) => console.log(error));
 };
 
 const getSongById = (req, res) => {
-  const { songId } = req.params;
-  Song.findByPk(songId)
+  const { id } = req.params;
+  Song.findByPk(id)
     .then((song) => {
       if (!song) {
         res.status(404).json({ error: "The song could not be found." });

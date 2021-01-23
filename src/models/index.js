@@ -25,8 +25,6 @@ const setupDatabase = () => {
 
   Album.hasMany(Song, { foreignKey: 'albumId' });
 
-  // Artist.hasMany(Song, { foreignKey: 'artistId' });
-
   connection.sync({ alter: true });
   return {
     Artist,
